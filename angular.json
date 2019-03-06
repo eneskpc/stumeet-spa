@@ -27,9 +27,19 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/libs/bootstrap/css/bootstrap.min.css",
+              "src/assets/assets/fonts/line-awesome/css/line-awesome.min.css",
+              "src/assets/assets/fonts/open-sans/styles.css",
+              "src/assets/libs/tether/css/tether.min.css",
+              "src/assets/assets/styles/common.min.css",
+              "src/assets/assets/styles/pages/auth.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/libs/jquery/jquery.min.js",
+              "src/assets/libs/tether/js/tether.min.js",
+              "src/assets/libs/bootstrap/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
