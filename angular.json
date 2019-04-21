@@ -27,9 +27,33 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/libs/bootstrap/css/bootstrap.min.css",
+              "src/assets/fonts/line-awesome/css/line-awesome.min.css",
+              "src/assets/fonts/montserrat/styles.css",
+              "src/assets/libs/tether/css/tether.min.css",
+              "src/assets/libs/jscrollpane/jquery.jscrollpane.css",
+              "src/assets/libs/flag-icon-css/css/flag-icon.min.css",
+              "src/assets/styles/common.min.css",
+              "src/assets/styles/themes/primary.min.css",
+              "src/assets/styles/themes/sidebar-black.min.css",
+              "src/assets/styles/widgets/panels.min.css",
+              "src/assets/styles/profile/social.min.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/libs/jquery/jquery.min.js",
+              "src/assets/libs/popper/popper.min.js",
+              "src/assets/libs/responsejs/response.min.js",
+              "src/assets/libs/loading-overlay/loadingoverlay.min.js",
+              "src/assets/libs/tether/js/tether.min.js",
+              "src/assets/libs/bootstrap/js/bootstrap.min.js",
+              "src/assets/libs/jscrollpane/jquery.jscrollpane.min.js",
+              "src/assets/libs/jscrollpane/jquery.mousewheel.js",
+              "src/assets/libs/flexibility/flexibility.js",
+              "src/assets/libs/noty/noty.min.js",
+              "src/assets/libs/velocity/velocity.min.js",
+              "src/assets/scripts/common.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
