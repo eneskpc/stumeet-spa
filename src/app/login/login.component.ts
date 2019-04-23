@@ -23,22 +23,27 @@ export class LoginComponent implements OnInit {
   public process = false;
 
   ngOnInit() {
+    if (this.auth.loggedIn()) {
+      this.router.navigateByUrl("/haber-kaynagi");
+    }
   }
 
   public login() {
-    this.process = true;
-    this.auth.login(this.model).subscribe(data => {
-      this.auth.saveToken(data["token"]);
-      this.router.navigateByUrl("/haber-kaynagi");
-      this.process = false;
-    }, error => {
-      switch (error.status) {
-        case 401:
-          this.dialog.show("Kullanıcı adın veya şifren yanlış.");
-          break;
-      }
-      this.process = false;
-    });
+    if (!this.process) {
+      this.process = true;
+      this.auth.login(this.model).subscribe(data => {
+        this.auth.saveToken(data["token"]);
+        this.router.navigateByUrl("/haber-kaynagi");
+        this.process = false;
+      }, error => {
+        switch (error.status) {
+          case 401:
+            this.dialog.show("Kullanıcı adın veya şifren yanlış.");
+            break;
+        }
+        this.process = false;
+      });
+    }
   }
 
 }
