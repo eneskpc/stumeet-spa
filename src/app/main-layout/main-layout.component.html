@@ -2,14 +2,14 @@
 <nav class="navbar ks-navbar">
     <!-- BEGIN HEADER INNER -->
     <!-- BEGIN LOGO -->
-    <div href="index.html" class="navbar-brand">
+    <div class="navbar-brand">
         <!-- BEGIN RESPONSIVE SIDEBAR TOGGLER -->
         <a class="ks-sidebar-toggle"><i class="ks-icon la la-bars" aria-hidden="true"></i></a>
         <a class="ks-sidebar-mobile-toggle"><i class="ks-icon la la-bars" aria-hidden="true"></i></a>
         <!-- END RESPONSIVE SIDEBAR TOGGLER -->
 
         <div class="ks-navbar-logo">
-            <a href="/" class="ks-logo">Stumeet</a>
+            <a routerLink="/haber-kaynagi" class="ks-logo">Stumeet</a>
             <!-- END GRID NAVIGATION -->
         </div>
     </div>
@@ -74,7 +74,7 @@
                         <div class="tab-content">
                             <div class="tab-pane ks-messages-tab active" id="ks-navbar-messages-inbox" role="tabpanel">
                                 <div class="ks-wrapper ks-scrollable">
-                                    <a class="ks-message">
+                                    <a (click)="this.testSendMessage();" class="ks-message">
                                         <div class="ks-avatar ks-online">
                                             <img src="assets/img/avatars/avatar-1.jpg" width="36" height="36">
                                         </div>
@@ -275,15 +275,7 @@
     <!-- END HEADER INNER -->
 </nav>
 <!-- END HEADER -->
-
-
-
-
-
-
 <div class="ks-page-container">
-
-
     <!-- BEGIN ICONBAR SIDEBAR -->
     <div class="ks-column ks-sidebar ks-iconbar ks-info">
         <div class="ks-wrapper ks-sidebar-wrapper">
@@ -304,9 +296,6 @@
         </div>
     </div>
     <!-- END ICONBAR SIDEBAR -->
-
     <router-outlet></router-outlet>
-
 </div>
-
 <div class="ks-mobile-overlay"></div>
