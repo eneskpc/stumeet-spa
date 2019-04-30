@@ -6,7 +6,7 @@ import { ChatService } from '../services/chat-service/chat.service';
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: [
-    "./main-layout.component.css"
+    "./main-layout.component.scss"
   ]
 })
 export class MainLayoutComponent implements OnInit {
@@ -15,16 +15,23 @@ export class MainLayoutComponent implements OnInit {
     public chat: ChatService,
     private router: Router) { }
 
+  public currentMessageContent: string = "";
+
   ngOnInit() {
     if (!this.auth.loggedIn()) {
       this.router.navigateByUrl("/giris");
+    } else {
+      this.chat.startConnection();
+      this.currentMessageContent = "";
     }
   }
 
   public testSendMessage() {
     this.chat.sendMessage({
-      userId: 25,
-      message: "Selamalar ben kurat"
+      groupId: 35,
+      messageContent: this.currentMessageContent
+    }).then(() => {
+      this.currentMessageContent = "";
     });
   }
 

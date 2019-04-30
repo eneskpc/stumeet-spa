@@ -41,4 +41,8 @@ export class AuthService {
     localStorage.setItem(SystemParams.tokenKey, value);
   }
 
+  public getToken() {
+    return localStorage.getItem(SystemParams.tokenKey);
+  }
+
 }
