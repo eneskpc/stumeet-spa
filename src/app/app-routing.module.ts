@@ -32,6 +32,9 @@ const routes: Routes = [
     }, {
       path: 'sohbet/:id',
       component: ChatComponent
+    },{
+      path: 'sohbet',
+      component: ChatComponent
     }]
   }
 ];

@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { SystemParams } from './SystemParams';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ChatComponent } from './chat/chat.component';
+import { MomentPipe } from './pipes/moment.pipe';
 
 export function tokenGetter() {
    return localStorage.getItem(SystemParams.tokenKey);
@@ -27,7 +28,8 @@ export function tokenGetter() {
       LoginComponent,
       EventsComponent,
       WelcomeComponent,
-      ChatComponent
+      ChatComponent,
+      MomentPipe
    ],
    imports: [
       BrowserModule,

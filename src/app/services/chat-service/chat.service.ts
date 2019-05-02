@@ -4,6 +4,8 @@ import { MessageForSend } from "src/app/models/messageForSend";
 import { SystemParams } from "src/app/SystemParams";
 import { AuthService } from '../auth-service/auth.service';
 import { MessageForReceived } from 'src/app/models/messageForReceived';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: "root"
@@ -11,7 +13,8 @@ import { MessageForReceived } from 'src/app/models/messageForReceived';
 export class ChatService {
   public static connection: signalR.HubConnection = null;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+    private http: HttpClient) { }
 
   public currentMessageList = Array<MessageForReceived>();
 
@@ -29,6 +32,15 @@ export class ChatService {
         this.currentMessageList.push(model);
         console.log(model);
       });
+    });
+  }
+
+  public getAllMessagesByGroupId(groupId): Observable<Array<MessageForReceived>> {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
+    headers = headers.append("Authorization", this.auth.getToken());
+    return this.http.get<Array<MessageForReceived>>(`${SystemParams.apiRoot}/messages/list/${groupId}`, {
+      headers: headers
     });
   }
 

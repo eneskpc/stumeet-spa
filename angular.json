@@ -38,6 +38,7 @@
               "src/assets/styles/themes/sidebar-black.min.css",
               "src/assets/styles/widgets/panels.min.css",
               "src/assets/styles/profile/social.min.css",
+              "src/assets/styles/apps/messenger.min.css",
               "src/assets/styles/pages/auth.min.css",
               "node_modules/alertifyjs/build/css/alertify.min.css",
               "node_modules/alertifyjs/build/css/themes/semantic.min.css",
