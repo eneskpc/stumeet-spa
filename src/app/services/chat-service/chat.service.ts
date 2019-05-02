@@ -3,6 +3,7 @@ import * as signalR from "@aspnet/signalr";
 import { MessageForSend } from "src/app/models/messageForSend";
 import { SystemParams } from "src/app/SystemParams";
 import { AuthService } from '../auth-service/auth.service';
+import { MessageForReceived } from 'src/app/models/messageForReceived';
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +13,7 @@ export class ChatService {
 
   constructor(private auth: AuthService) { }
 
-  public currentMessageList = Array<>();
+  public currentMessageList = Array<MessageForReceived>();
 
   public startConnection() {
     if (ChatService.connection == null) {
@@ -24,7 +25,9 @@ export class ChatService {
         }).build();
     }
     ChatService.connection.start().then(() => {
-      ChatService.connection.on("messageReceived", (model: MessageForSend) => {
+      ChatService.connection.on("messageReceived", (model: MessageForReceived) => {
+        this.currentMessageList.push(model);
+        console.log(model);
       });
     });
   }

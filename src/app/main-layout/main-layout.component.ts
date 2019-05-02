@@ -15,24 +15,12 @@ export class MainLayoutComponent implements OnInit {
     public chat: ChatService,
     private router: Router) { }
 
-  public currentMessageContent: string = "";
-
   ngOnInit() {
     if (!this.auth.loggedIn()) {
       this.router.navigateByUrl("/giris");
     } else {
       this.chat.startConnection();
-      this.currentMessageContent = "";
     }
-  }
-
-  public testSendMessage() {
-    this.chat.sendMessage({
-      groupId: 35,
-      messageContent: this.currentMessageContent
-    }).then(() => {
-      this.currentMessageContent = "";
-    });
   }
 
   public logout() {

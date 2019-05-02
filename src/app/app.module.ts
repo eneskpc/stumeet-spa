@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SystemParams } from './SystemParams';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ChatComponent } from './chat/chat.component';
 
 export function tokenGetter() {
    return localStorage.getItem(SystemParams.tokenKey);
@@ -25,7 +26,8 @@ export function tokenGetter() {
       PublicLayoutComponent,
       LoginComponent,
       EventsComponent,
-      WelcomeComponent
+      WelcomeComponent,
+      ChatComponent
    ],
    imports: [
       BrowserModule,

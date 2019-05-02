@@ -6,6 +6,7 @@ import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,9 @@ const routes: Routes = [
     }, {
       path: 'etkinlikler',
       component: EventsComponent
+    }, {
+      path: 'sohbet/:id',
+      component: ChatComponent
     }]
   }
 ];

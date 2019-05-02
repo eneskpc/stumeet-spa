@@ -1,9 +1,9 @@
 export interface MessageForReceived {
-    Id: number;
-    UserId: number;
-    GroupId: number;
-    MessageContent: string;
-    CreationDate: Date;
-    UpdatedDate: Date;
-    IsDeleted: boolean;
+    id: number;
+    userId: number;
+    groupId: number;
+    messageContent: string;
+    creationDate: Date;
+    updatedDate: Date;
+    isDeleted: boolean;
 }
