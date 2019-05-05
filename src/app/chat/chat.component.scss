@@ -2,6 +2,7 @@
   width: 100%;
   .sm-loading {
     position: relative;
+    min-height: 150px;
   }
   .sm-loading::before {
     content: "Lütfen bekleyin...";
