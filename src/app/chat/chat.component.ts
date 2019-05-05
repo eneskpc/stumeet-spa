@@ -14,6 +14,10 @@ export class ChatComponent implements OnInit {
 
   public currentMessageContent: string = "";
   public currentGroupId: number = 0;
+  public currentGroupTitle: string = "";
+  public currentMemberCount: string = "";
+  public groupLoading: boolean = true;
+  public messageLoading: boolean = true;
 
   ngOnInit() {
     this.currentMessageContent = "";
@@ -21,10 +25,24 @@ export class ChatComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.currentGroupId = parseInt(params.get("id"));
       if (this.currentGroupId > 0)
-        this.chat.getAllMessagesByGroupId(this.currentGroupId).subscribe(data => {
-          this.chat.currentMessageList = data;
-        });
+        this.chat.getAllMessagesByGroupId(this.currentGroupId)
+          .subscribe(response => {
+            this.chat.currentMessageList = response["data"];
+            this.messageLoading = false;
+          });
+      this.chat.getGroups().subscribe(response => {
+        this.chat.currentMessageGroupList = response["data"];
+        this.groupLoading = false;
+      });
+      this.chat.getGroupById(this.currentGroupId).subscribe(response => {
+        let currentGroup = response['data'];
+        this.currentGroupTitle = currentGroup['groupName'];
+      });
     });
+  }
+
+  changeGroup() {
+    this.messageLoading = true;
   }
 
   onKeydown(event) {

@@ -17,6 +17,7 @@ export class ChatService {
     private http: HttpClient) { }
 
   public currentMessageList = Array<MessageForReceived>();
+  public currentMessageGroupList = Array<any>();
 
   public startConnection() {
     if (ChatService.connection == null) {
@@ -30,16 +31,32 @@ export class ChatService {
     ChatService.connection.start().then(() => {
       ChatService.connection.on("messageReceived", (model: MessageForReceived) => {
         this.currentMessageList.push(model);
-        console.log(model);
       });
     });
   }
 
-  public getAllMessagesByGroupId(groupId): Observable<Array<MessageForReceived>> {
+  public getAllMessagesByGroupId(groupId) {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     headers = headers.append("Authorization", this.auth.getToken());
-    return this.http.get<Array<MessageForReceived>>(`${SystemParams.apiRoot}/messages/list/${groupId}`, {
+    return this.http.get(`${SystemParams.apiRoot}/messages/getbyid/${groupId}`, {
+      headers: headers
+    });
+  }
+
+  public getGroups() {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
+    headers = headers.append("Authorization", this.auth.getToken());
+    return this.http.get(`${SystemParams.apiRoot}/messages/groups`, {
+      headers: headers
+    });
+  }
+  public getGroupById(groupId: number) {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
+    headers = headers.append("Authorization", this.auth.getToken());
+    return this.http.get(`${SystemParams.apiRoot}/messages/group/${groupId}`, {
       headers: headers
     });
   }
