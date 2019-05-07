@@ -1,10 +1,12 @@
 .ks-page-content-body {
   width: 100%;
-  .sm-loading {
+  .sm-loading,
+  .sm-chat-main {
     position: relative;
     min-height: 150px;
   }
-  .sm-loading::before {
+  .sm-loading::before,
+  .sm-chat-main::before {
     content: "Lütfen bekleyin...";
     position: absolute;
     left: 0;
@@ -14,9 +16,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index:2;
+    z-index: 2;
   }
-  .sm-loading::after {
+  .sm-chat-main::before {
+    content: "Sohbete başlamak için sol menüden bir diyalog seçin...";
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .sm-loading::after,
+  .sm-chat-main::after {
     content: "";
     position: absolute;
     top: 0;
@@ -25,5 +33,26 @@
     height: 100%;
     background-color: rgba(255, 255, 255, 0.7);
     z-index: 1;
+  }
+
+  .ks-messenger {
+    .ks-info {
+      > .ks-body {
+        > .ks-item.ks-user {
+          > .ks-name {
+            line-height: 17px !important;
+          }
+        }
+      }
+    }
+    .ks-messenger__info {
+      > .ks-body {
+        > .ks-item.ks-user {
+          > .ks-name {
+            line-height: 17px !important;
+          }
+        }
+      }
+    }
   }
 }

@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
   public currentMemberCount: string = "";
   public groupLoading: boolean = true;
   public messageLoading: boolean = true;
+  public intro: boolean = false;
 
   ngOnInit() {
     this.currentMessageContent = "";
@@ -30,13 +31,18 @@ export class ChatComponent implements OnInit {
             this.chat.currentMessageList = response["data"];
             this.messageLoading = false;
           });
+      else{
+        this.messageLoading = false;
+        this.intro = true;
+      } 
       this.chat.getGroups().subscribe(response => {
         this.chat.currentMessageGroupList = response["data"];
         this.groupLoading = false;
       });
       this.chat.getGroupById(this.currentGroupId).subscribe(response => {
         let currentGroup = response['data'];
-        this.currentGroupTitle = currentGroup['groupName'];
+        console.log(currentGroup);
+        this.currentGroupTitle = currentGroup[0]['groupName'];
       });
     });
   }
