@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../services/chat-service/chat.service';
 import { ActivatedRoute } from '@angular/router';
+import { MessageForReceived } from '../models/messageForReceived';
 
 @Component({
   selector: 'app-chat.ks-column.ks-page',
@@ -15,6 +16,7 @@ export class ChatComponent implements OnInit {
   public currentMessageContent: string = "";
   public currentGroupId: number = 0;
   public currentGroupTitle: string = "";
+  public currentGroupCreationDate: string = "";
   public currentMemberCount: string = "";
   public groupLoading: boolean = true;
   public messageLoading: boolean = true;
@@ -23,6 +25,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.currentMessageContent = "";
     this.chat.currentMessageList = [];
+    this.messageLoading = true;
     this.route.paramMap.subscribe(params => {
       this.currentGroupId = parseInt(params.get("id"));
       if (this.currentGroupId > 0)
@@ -41,14 +44,13 @@ export class ChatComponent implements OnInit {
       });
       this.chat.getGroupById(this.currentGroupId).subscribe(response => {
         let currentGroup = response['data'];
-        console.log(currentGroup);
-        this.currentGroupTitle = currentGroup[0]['groupName'];
+        this.currentGroupTitle = currentGroup['groupName'];
+        this.currentGroupCreationDate = currentGroup['creationDate'];
+      });
+      this.chat.getParticipantsByGroupId(this.currentGroupId).subscribe(response => {
+        this.chat.currentGroupParticipants = response['data'];
       });
     });
-  }
-
-  changeGroup() {
-    this.messageLoading = true;
   }
 
   onKeydown(event) {

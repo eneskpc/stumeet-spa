@@ -18,6 +18,7 @@ export class ChatService {
 
   public currentMessageList = Array<MessageForReceived>();
   public currentMessageGroupList = Array<any>();
+  public currentGroupParticipants = Array<any>();
 
   public startConnection() {
     if (ChatService.connection == null) {
@@ -52,11 +53,21 @@ export class ChatService {
       headers: headers
     });
   }
+
   public getGroupById(groupId: number) {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     headers = headers.append("Authorization", this.auth.getToken());
     return this.http.get(`${SystemParams.apiRoot}/messages/group/${groupId}`, {
+      headers: headers
+    });
+  }
+
+  public getParticipantsByGroupId(groupId: number) {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
+    headers = headers.append("Authorization", this.auth.getToken());
+    return this.http.get(`${SystemParams.apiRoot}/messages/group/${groupId}/participants`, {
       headers: headers
     });
   }
