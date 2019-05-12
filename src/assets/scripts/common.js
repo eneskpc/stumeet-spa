@@ -1,6 +1,6 @@
 "use strict";
 
-(function($, window) {
+(function ($, window) {
     /**
      * Default overlay settings
      */
@@ -32,13 +32,13 @@
                 xs: 320
             }
         },
-        initSidebarScrollBar: function(ksSidebar, isSidebarFixed) {
-            if (isSidebarFixed) {
-                ksSidebar.find('.ks-sidebar-wrapper').jScrollPane({
-                    autoReinitialise: false,
-                    autoReinitialiseDelay: 300
-                });
-            }
+        initSidebarScrollBar: function (ksSidebar, isSidebarFixed) {
+            // if (isSidebarFixed) {
+            //     ksSidebar.find('.ks-sidebar-wrapper').jScrollPane({
+            //         autoReinitialise: false,
+            //         autoReinitialiseDelay: 300
+            //     });
+            // }
 
             $(document).on('sidebar:height:changed', function () {
                 var api = ksSidebar.find('.ks-sidebar-wrapper').data('jsp');
@@ -46,15 +46,15 @@
             });
         },
         makeScrollable: function (selector) {
-            $(selector).jScrollPane({
-                autoReinitialise: true,
-                autoReinitialiseDelay: 300
-            });
+            // $(selector).jScrollPane({
+            //     autoReinitialise: true,
+            //     autoReinitialiseDelay: 300
+            // });
         }
     };
 
     Response.create({
-        prop : "width",
+        prop: "width",
         breakpoints: [
             Kosmo.screen.breakpoints.xxl,
             Kosmo.screen.breakpoints.xl,
@@ -66,7 +66,7 @@
         ]
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         window.Kosmo.window = {
             height: $(window).height()
         };
@@ -87,7 +87,7 @@
         var ksSettingsSlideControl = $('.ks-settings-slide-control');
         var ksSettingsSlideCloseControl = $('.ks-settings-slide-close-control');
 
-        Response.crossover('width', function() {
+        Response.crossover('width', function () {
             if (Response.band(Kosmo.screen.breakpoints.xxl)) {
                 if (!isSidebarCompact) {
                     ksBody.removeClass('ks-sidebar-compact');
@@ -105,17 +105,17 @@
             }
         });
 
-        Response.ready(function() {
+        Response.ready(function () {
             $(window).trigger('resize');
         });
 
-        setTimeout(function() {
+        setTimeout(function () {
             $.LoadingOverlay("hide");
             ksBody.removeClass('ks-page-loading');
         }, 1000);
 
         // Replace default dropdown logic for sidebar
-        ksSidebar.find('.dropdown-toggle').on('click', function() {
+        ksSidebar.find('.dropdown-toggle').on('click', function () {
             if ($(this).closest('.dropdown-menu').size()) {
                 if ($(this).closest('.dropdown-menu').find('.dropdown.open > .dropdown-toggle')[0] != $(this)[0]) {
                     $(this).closest('.dropdown-menu').find('.dropdown.open').removeClass('open');
@@ -134,7 +134,7 @@
         /**
          * Toggle sidebar to compact size
          */
-        ksSidebarToggle.on('click', function() {
+        ksSidebarToggle.on('click', function () {
             if (!isSidebarCompact) {
                 if (ksBody.hasClass('ks-sidebar-compact')) {
                     ksBody.removeClass('ks-sidebar-compact');
@@ -159,7 +159,7 @@
         });
 
         // Navbar toggle
-        ksNavbarMenuToggle.on('click', function() {
+        ksNavbarMenuToggle.on('click', function () {
             var self = $(this);
 
             if (ksMobileOverlay.hasClass('ks-open') && !self.hasClass('ks-open')) {
@@ -175,7 +175,7 @@
             ksMobileOverlay.toggleClass('ks-open');
         });
 
-        ksSidebarMobileToggle.on('click', function() {
+        ksSidebarMobileToggle.on('click', function () {
             var self = $(this);
 
             if (ksMobileOverlay.hasClass('ks-open') && !self.hasClass('ks-open')) {
@@ -191,7 +191,7 @@
             ksMobileOverlay.toggleClass('ks-open');
         });
 
-        ksNavbarActionsToggle.on('click', function() {
+        ksNavbarActionsToggle.on('click', function () {
             var self = $(this);
 
             if (ksMobileOverlay.hasClass('ks-open') && !self.hasClass('ks-open')) {
@@ -207,7 +207,7 @@
             ksMobileOverlay.toggleClass('ks-open');
         });
 
-        ksMobileOverlay.on('click', function() {
+        ksMobileOverlay.on('click', function () {
             if (ksSidebar.hasClass('ks-open')) {
                 ksSidebar.toggleClass('ks-open');
             } else if (ksNavbarMenu.hasClass('ks-open')) {
@@ -231,28 +231,28 @@
             ksMobileOverlay.toggleClass('ks-open');
         });
 
-        ksSearchOpen.on('click', function() {
+        ksSearchOpen.on('click', function () {
             $(this).closest('.ks-navbar-menu').toggleClass('ks-open');
             $('.ks-search-form .form-control').focus();
         });
 
-        ksSearchClose.on('click', function() {
+        ksSearchClose.on('click', function () {
             $(this).closest('.ks-navbar-menu').toggleClass('ks-open');
             $('.ks-search-form .form-control').val('').blur();
         });
 
-        ksSettingsSlideControl.on('click', function() {
+        ksSettingsSlideControl.on('click', function () {
             $(this).closest('.ks-settings-slide-block').toggleClass('ks-open');
         });
 
-        ksSettingsSlideCloseControl.on('click', function() {
+        ksSettingsSlideCloseControl.on('click', function () {
             $(this).closest('.ks-settings-slide-block').removeClass('ks-open');
         });
 
         /**
          * Prevent default events for messages dropdown
          */
-        $('.ks-navbar .ks-messages .nav-tabs .nav-link').on('click', function(e) {
+        $('.ks-navbar .ks-messages .nav-tabs .nav-link').on('click', function (e) {
             e.stopPropagation();
             e.preventDefault();
             $(this).tab('show');
@@ -261,7 +261,7 @@
         /**
          * Prevent default events for notifications dropdown
          */
-        $('.ks-navbar .ks-notifications .nav-tabs .nav-link').on('click', function(e) {
+        $('.ks-navbar .ks-notifications .nav-tabs .nav-link').on('click', function (e) {
             e.stopPropagation();
             e.preventDefault();
             $(this).tab('show');
@@ -270,7 +270,7 @@
         /**
          * Prevent default events for nested dropdown menus
          */
-        $('.ks-navbar .dropdown-menu .dropdown-toggle').on('click', function(e) {
+        $('.ks-navbar .dropdown-menu .dropdown-toggle').on('click', function (e) {
             var self = $(this);
             var parent = self.closest('.dropdown');
             e.stopPropagation();
@@ -279,13 +279,13 @@
             parent.toggleClass('show');
         });
 
-        $(document).on('change', '.btn-file :file', function(e) {
+        $(document).on('change', '.btn-file :file', function (e) {
             var input = $(this);
             var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
             $(e.target).closest('.btn').find('.text').text(label);
         });
 
-        $('.ks-document-viewer .ks-view-toggle').on('click', function() {
+        $('.ks-document-viewer .ks-view-toggle').on('click', function () {
             var docViewer = $(this).closest('.ks-document-viewer');
 
             if (!$(this).closest('.ks-document-viewer').hasClass('ks-expanded')) {
@@ -300,21 +300,21 @@
         /**
          * Set fixed height to blocks
          */
-        $('[data-height]').each(function() {
+        $('[data-height]').each(function () {
             $(this).height($(this).data('height'));
         });
 
         /**
          * Set min height to blocks
          */
-        $('[data-min-height]').each(function() {
+        $('[data-min-height]').each(function () {
             $(this).css('min-height', $(this).data('min-height'));
         });
 
         /**
          * Set auto height for blocks
          */
-        $('[data-auto-height]').each(function() {
+        $('[data-auto-height]').each(function () {
             var self = $(this);
             var autoHeight = self.data('auto-height');
             var height = Kosmo.window.height - self.offset().top;
@@ -356,21 +356,21 @@
         /**
          * Add scroll to blocks
          */
-        $('.ks-scrollable').each(function(index, item) {
-            var scrollableIfHasClass = $(this).data('scrollable-if-has-class');
+        // $('.ks-scrollable').each(function (index, item) {
+        //     var scrollableIfHasClass = $(this).data('scrollable-if-has-class');
 
-            if (!scrollableIfHasClass || (scrollableIfHasClass && ($(this).hasClass(scrollableIfHasClass) || Response.band(0, Kosmo.screen.breakpoints.lg)))) {
-                $(item).jScrollPane({
-                    autoReinitialise: true,
-                    autoReinitialiseDelay: 100
-                });
-            }
-        });
+        //     if (!scrollableIfHasClass || (scrollableIfHasClass && ($(this).hasClass(scrollableIfHasClass) || Response.band(0, Kosmo.screen.breakpoints.lg)))) {
+        //         $(item).jScrollPane({
+        //             autoReinitialise: true,
+        //             autoReinitialiseDelay: 100
+        //         });
+        //     }
+        // });
 
         /**
          * Toggle hidden responsive menus
          */
-        $('[data-block-toggle]').on('click', function() {
+        $('[data-block-toggle]').on('click', function () {
             var self = $(this);
             var query = $(this).data('block-toggle');
             var block = $(query);
@@ -468,13 +468,13 @@
                 menu.velocity({
                     height: height
                 }, {
-                    duration: 300,
-                    easing: "easeOut",
-                    complete: function () {
-                        menu.removeAttr('style');
-                        $(document).trigger('sidebar:height:changed');
-                    }
-                });
+                        duration: 300,
+                        easing: "easeOut",
+                        complete: function () {
+                            menu.removeAttr('style');
+                            $(document).trigger('sidebar:height:changed');
+                        }
+                    });
             } else {
                 menu.hide();
                 menu.removeAttr('style');
@@ -482,7 +482,7 @@
             }
         });
 
-        $('.m-menu.is-collapsed .m-menu__toggle').on('click', function() {
+        $('.m-menu.is-collapsed .m-menu__toggle').on('click', function () {
             $(this).closest('.m-menu').find('.m-menu__item').removeClass('is-active');
             $(this).parent().addClass('is-active');
         });
@@ -499,7 +499,7 @@
             $('.ks-navbar-horizontal-responsive > .dropdown-menu .show').removeClass('show');
             $(this).closest('.dropdown-item').addClass('show');
         });
-        
+
         $(window).trigger('resize');
     });
 })(jQuery, window);

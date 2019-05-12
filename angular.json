@@ -56,7 +56,6 @@
               "src/assets/libs/flexibility/flexibility.js",
               "src/assets/libs/noty/noty.min.js",
               "src/assets/libs/velocity/velocity.min.js",
-              "src/assets/scripts/common.min.js",
               "node_modules/alertifyjs/build/alertify.min.js"
             ],
             "es5BrowserSupport": true

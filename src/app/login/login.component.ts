@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth-service/auth.service';
 import { UserForLogin } from '../models/userForLogin';
-import { Router } from '@angular/router';
+import { Router, Event } from '@angular/router';
 import { DialogService } from '../services/dialog-service/dialog.service';
 
 @Component({
@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public login() {
-    if (!this.process) {
+  public login($event: KeyboardEvent = null) {
+    if (($event == null || $event.keyCode == 13) && !this.process) {
       this.process = true;
       this.buttonText = '<i class="la la-refresh la-spin"></i> Lütfen Bekleyin...';
       this.auth.login(this.model).subscribe(data => {
