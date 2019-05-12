@@ -30,6 +30,26 @@
   }
 }
 
+.ks-navbar {
+  > .ks-wrapper {
+    > .nav {
+      > .ks-navbar-actions {
+        > .ks-messages {
+          > .dropdown-menu {
+            > .tab-content {
+              > .tab-pane {
+                .ks-scrollable {
+                  overflow: hidden scroll;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (min-width: 1225.1px) {
   .ks-navbar {
     > .ks-wrapper {

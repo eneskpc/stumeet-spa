@@ -82,6 +82,7 @@ export class MainLayoutComponent implements OnInit {
         var ksNavbarActionsToggle = $('.ks-navbar-actions-toggle');
         var ksNavbarActions = $('.ks-navbar .ks-navbar-actions');
         var ksSidebarMobileToggle = $('.ks-sidebar-mobile-toggle');
+        var isSidebarFixed = ksBody.hasClass('ks-sidebar-position-fixed');
         var ksSidebar = $('.ks-sidebar');
         var ksSidebarToggle = $('.ks-sidebar-toggle');
         var ksSearchOpen = $('.ks-search-open');
@@ -325,12 +326,44 @@ export class MainLayoutComponent implements OnInit {
           }
         });
 
+        window.Kosmo.initSidebarScrollBar(ksSidebar, isSidebarFixed);
+
+        $(document).find('.ks-sidebar .dropdown-toggle').on('click', function () {
+          var parent = $(this).parent();
+          var menu = parent.find('> .dropdown-menu');
+
+          if (parent.hasClass('open')) {
+            menu.show();
+            var height = menu.height();
+            menu.height(0);
+            menu.velocity({
+              height: height
+            }, {
+                duration: 300,
+                easing: "easeOut",
+                complete: function () {
+                  menu.removeAttr('style');
+                  $(document).trigger('sidebar:height:changed');
+                }
+              });
+          } else {
+            menu.hide();
+            menu.removeAttr('style');
+            $(document).trigger('sidebar:height:changed');
+          }
+        });
+
+        $('.navbar .nav-item.dropdown').on('hide.bs.dropdown', function () {
+          $(this).find('.dropdown-item.dropdown').removeClass('show');
+        });
+
+        $(window).trigger('resize');
+
       });
     })(jQuery);
     /**
      * jQuery kodları burada bitiyor.
      */
-
 
     if (!this.auth.loggedIn()) {
       this.router.navigateByUrl("/giris");

@@ -136,10 +136,10 @@ export class ChatComponent implements OnInit {
 
     this.currentMessageContent = "";
     this.chat.currentMessageList = [];
-    this.messageLoading = true;
     this.route.paramMap.subscribe(params => {
+      this.messageLoading = true;
       this.currentGroupId = parseInt(params.get("id"));
-      if (this.currentGroupId > 0)
+      if (this.currentGroupId > 0) {
         this.chat.getAllMessagesByGroupId(this.currentGroupId)
           .subscribe(response => {
             this.chat.currentMessageList = response["data"];
@@ -147,7 +147,15 @@ export class ChatComponent implements OnInit {
             document.querySelector<HTMLElement>('.ks-messenger__messages .ks-items')
               .scrollTo(0, 350);
           });
-      else {
+        this.chat.getGroupById(this.currentGroupId).subscribe(response => {
+          let currentGroup = response['data'];
+          this.currentGroupTitle = currentGroup['groupName'];
+          this.currentGroupCreationDate = currentGroup['creationDate'];
+        });
+        this.chat.getParticipantsByGroupId(this.currentGroupId).subscribe(response => {
+          this.chat.currentGroupParticipants = response['data'];
+        });
+      } else {
         this.messageLoading = false;
         this.intro = true;
       }
@@ -155,28 +163,21 @@ export class ChatComponent implements OnInit {
         this.chat.currentMessageGroupList = response["data"];
         this.groupLoading = false;
       });
-      this.chat.getGroupById(this.currentGroupId).subscribe(response => {
-        let currentGroup = response['data'];
-        this.currentGroupTitle = currentGroup['groupName'];
-        this.currentGroupCreationDate = currentGroup['creationDate'];
-      });
-      this.chat.getParticipantsByGroupId(this.currentGroupId).subscribe(response => {
-        this.chat.currentGroupParticipants = response['data'];
-      });
     });
   }
 
-  onKeydown(event) {
-    if (event.key === "Enter" && this.currentMessageContent.trim() != '') {
+  onKeydown(event: KeyboardEvent) {
+    if (event.keyCode === 13 && !event.shiftKey && this.currentMessageContent.trim() != ' ') {
+      event.preventDefault();
       this.sendMessage();
     }
   }
 
   public sendMessage(isEnter: boolean = false) {
-    if (this.currentGroupId > 0 && this.currentMessageContent.trim() != '')
+    if (this.currentGroupId > 0 && this.currentMessageContent.trim() != ' ')
       this.chat.sendMessage({
         groupId: this.currentGroupId,
-        messageContent: this.currentMessageContent
+        messageContent: this.currentMessageContent.trim().replace(/\n/g, '<br>')
       }).then(() => {
         this.currentMessageContent = "";
       });
