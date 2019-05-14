@@ -55,65 +55,21 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
                         <section class="ks-tabs-actions">
                             <a><i class="la la-plus ks-icon"></i></a>
-                            <a><i class="la la-search ks-icon"></i></a>
                         </section>
                         <ul class="nav nav-tabs ks-nav-tabs ks-info" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" data-target="#ks-navbar-messages-inbox"
-                                    role="tab">Inbox</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" data-target="#ks-navbar-messages-sent"
-                                    role="tab">Sent</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" data-target="#ks-navbar-messages-archive"
-                                    role="tab">Archive</a>
+                                    role="tab">Sohbetler</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane ks-messages-tab active" id="ks-navbar-messages-inbox" role="tabpanel">
                                 <div class="ks-wrapper ks-scrollable">
-                                    <a (click)="this.testSendMessage();" class="ks-message">
-                                        <div class="ks-avatar ks-online">
-                                            <img src="assets/img/avatars/avatar-1.jpg" width="36" height="36">
-                                        </div>
+                                    <a [routerLink]="['/sohbet',group.id]" routerLinkActive="ks-active"
+                                        class="ks-message" *ngFor="let group of this.chat.currentMessageGroupList">
+                                        <span class="ks-group-amount">1</span>
                                         <div class="ks-info">
-                                            <div class="ks-user-name">Emily Carter</div>
-                                            <div class="ks-text">In golf, Danny Willett (pictured) wins M...
-                                            </div>
-                                            <div class="ks-datetime">1 minute ago</div>
-                                        </div>
-                                    </a>
-                                    <a class="ks-message">
-                                        <div class="ks-avatar ks-online">
-                                            <img src="assets/img/avatars/avatar-5.jpg" width="36" height="36">
-                                        </div>
-                                        <div class="ks-info">
-                                            <div class="ks-user-name">Emily Carter</div>
-                                            <div class="ks-text">In golf, Danny Willett (pictured) wins M...
-                                            </div>
-                                            <div class="ks-datetime">1 minute ago</div>
-                                        </div>
-                                    </a>
-                                    <a class="ks-message">
-                                        <div class="ks-avatar ks-offline">
-                                            <img src="assets/img/avatars/placeholders/ava-36.png" width="36"
-                                                height="36">
-                                        </div>
-                                        <div class="ks-info">
-                                            <div class="ks-user-name">Emily Carter</div>
-                                            <div class="ks-text">In golf, Danny Willett (pictured) wins M...
-                                            </div>
-                                            <div class="ks-datetime">1 minute ago</div>
-                                        </div>
-                                    </a>
-                                    <a class="ks-message">
-                                        <div class="ks-avatar ks-offline">
-                                            <img src="assets/img/avatars/avatar-4.jpg" width="36" height="36">
-                                        </div>
-                                        <div class="ks-info">
-                                            <div class="ks-user-name">Emily Carter</div>
+                                            <div class="ks-user-name">{{group.groupName}}</div>
                                             <div class="ks-text">In golf, Danny Willett (pictured) wins M...
                                             </div>
                                             <div class="ks-datetime">1 minute ago</div>
@@ -121,14 +77,8 @@
                                     </a>
                                 </div>
                                 <div class="ks-view-all">
-                                    <a routerLink="/sohbet">View all</a>
+                                    <a routerLink="/sohbet">Tüm Sohbetleri Görüntüle</a>
                                 </div>
-                            </div>
-                            <div class="tab-pane ks-empty" id="ks-navbar-messages-sent" role="tabpanel">
-                                There are no messages.
-                            </div>
-                            <div class="tab-pane ks-empty" id="ks-navbar-messages-archive" role="tabpanel">
-                                There are no messages.
                             </div>
                         </div>
                     </div>
@@ -288,7 +238,7 @@
                 </li>
                 <li class="nav-item" routerLink="/etkinlikler" routerLinkActive="open">
                     <a class="nav-link">
-                        <span class="ks-icon la la-newspaper-o"></span>
+                        <span class="ks-icon la la-calendar-o"></span>
                         <span class="ks-text">Etkinlikler</span>
                     </a>
                 </li>

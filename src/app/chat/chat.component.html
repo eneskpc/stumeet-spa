@@ -11,7 +11,7 @@
       <div class="ks-discussions">
         <div class="ks-search">
           <div class="input-icon icon-right icon icon-lg icon-color-primary">
-            <input id="input-group-icon-text" type="text" class="form-control" placeholder="Ara...">
+            <input id="input-group-icon-text" (keydown)="filterGroup($event)" type="text" class="form-control" placeholder="Ara...">
             <span class="icon-addon">
               <span class="la la-search"></span>
             </span>
@@ -20,7 +20,7 @@
         <div class="ks-body ks-scrollable" [ngClass]="{'sm-loading':this.groupLoading}" data-auto-height>
           <ul class="ks-items">
             <li class="ks-item" [routerLink]="['/sohbet',group.id]" routerLinkActive="ks-active"
-              *ngFor="let group of this.chat.currentMessageGroupList">
+              *ngFor="let group of this.filteredGroupList">
               <a>
                 <span class="ks-group-amount">1</span>
                 <div class="ks-body">
@@ -83,7 +83,7 @@
           <ul class="ks-items">
             <li class="ks-item" [ngClass]="{'ks-from':message.userId==1,'ks-self':message.userId!=1}"
               *ngFor="let message of this.chat.currentMessageList">
-              <span class="ks-avatar ks-offline">
+              <span class="ks-avatar" [ngClass]="{'ks-online':(message.lastLoginDate - message.lastLogoutDate),'ks-offline':!(message.lastLoginDate - message.lastLogoutDate)}">
                 <img src="assets/img/avatars/ava-4.png" width="36" height="36" class="rounded-circle">
               </span>
               <div class="ks-body">
@@ -100,7 +100,7 @@
         </div>
         <div class="ks-footer">
           <textarea class="form-control" placeholder="Birşeyler yaz..." [(ngModel)]="currentMessageContent"
-            (keydown)="onKeydown($event)"></textarea>
+            (keydown)="sendMessageWithEnter($event)"></textarea>
           <div class="ks-controls">
             <button class="btn btn-primary" (click)="sendMessage()">Gönder</button>
             <a href="#" class="la la-paperclip ks-attachment"></a>

@@ -369,12 +369,17 @@ export class MainLayoutComponent implements OnInit {
       this.router.navigateByUrl("/giris");
     } else {
       this.chat.startConnection();
+      this.chat.getGroups().subscribe(response => {
+        this.chat.currentMessageGroupList = response["data"];
+      });
     }
   }
 
   public logout() {
-    this.auth.logout();
-    this.router.navigateByUrl('giris');
+    this.chat.logout().then(value => {
+      this.auth.logout();
+      this.router.navigateByUrl('giris');
+    });
   }
 
 }

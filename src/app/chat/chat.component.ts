@@ -25,6 +25,8 @@ export class ChatComponent implements OnInit {
   public groupLoading: boolean = true;
   public messageLoading: boolean = true;
   public intro: boolean = false;
+  public filteredGroupList = Array<any>();
+
 
   ngOnInit() {
 
@@ -144,8 +146,10 @@ export class ChatComponent implements OnInit {
           .subscribe(response => {
             this.chat.currentMessageList = response["data"];
             this.messageLoading = false;
-            document.querySelector<HTMLElement>('.ks-messenger__messages .ks-items')
-              .scrollTo(0, 350);
+            setTimeout(() => {
+              document.querySelector<HTMLElement>('.ks-messages.ks-messenger__messages .ks-body.ks-scrollable').scrollTo(0, document.querySelector('.ks-messages.ks-messenger__messages .ks-body.ks-scrollable').scrollHeight);
+              document.querySelector<HTMLElement>('.ks-messenger .ks-messages>.ks-footer>.form-control').focus();
+            }, 50);
           });
         this.chat.getGroupById(this.currentGroupId).subscribe(response => {
           let currentGroup = response['data'];
@@ -161,16 +165,24 @@ export class ChatComponent implements OnInit {
       }
       this.chat.getGroups().subscribe(response => {
         this.chat.currentMessageGroupList = response["data"];
+        this.filteredGroupList = response['data'];
         this.groupLoading = false;
       });
     });
   }
 
-  onKeydown(event: KeyboardEvent) {
+  sendMessageWithEnter(event: KeyboardEvent) {
     if (event.keyCode === 13 && !event.shiftKey && this.currentMessageContent.trim() != ' ') {
       event.preventDefault();
       this.sendMessage();
     }
+  }
+
+  filterGroup(event) {
+    setTimeout(() => {
+      this.filteredGroupList = this.chat.currentMessageGroupList
+        .filter(a => a.groupName.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase()));
+    }, 100);
   }
 
   public sendMessage(isEnter: boolean = false) {

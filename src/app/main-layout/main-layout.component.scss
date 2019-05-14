@@ -35,6 +35,17 @@
     > .nav {
       > .ks-navbar-actions {
         > .ks-messages {
+          .ks-group-amount {
+            position: relative;
+            top: 3px;
+            margin-right: 12px;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(57, 81, 155, 0.1);
+            text-align: center;
+            line-height: 36px;
+            border-radius: 50%;
+          }
           > .dropdown-menu {
             > .tab-content {
               > .tab-pane {
