@@ -77,10 +77,10 @@
             </div>
           </div>
         </div>
-        <div class="ks-body ks-scrollable"
-          [ngClass]="{'sm-loading':this.messageLoading,'sm-chat-main':this.intro}" data-auto-height
+        <div class="ks-body ks-scrollable" data-auto-height
           data-reduce-height=".ks-footer" data-fix-height="32">
-          <ul class="ks-items">
+          <ul class="ks-items" 
+          [ngClass]="{'sm-loading':this.messageLoading,'sm-chat-main':this.intro}">
             <li class="ks-item" [ngClass]="{'ks-from':message.userId==1,'ks-self':message.userId!=1}"
               *ngFor="let message of this.chat.currentMessageList">
               <span class="ks-avatar" [ngClass]="{'ks-online':(message.lastLoginDate - message.lastLogoutDate),'ks-offline':!(message.lastLoginDate - message.lastLogoutDate)}">

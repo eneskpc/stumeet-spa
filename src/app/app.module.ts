@@ -15,6 +15,8 @@ import { SystemParams } from './SystemParams';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ChatComponent } from './chat/chat.component';
 import { MomentPipe } from './pipes/moment.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RegisterComponent } from './register/register.component';
 
 export function tokenGetter() {
    return localStorage.getItem(SystemParams.tokenKey);
@@ -29,7 +31,9 @@ export function tokenGetter() {
       EventsComponent,
       WelcomeComponent,
       ChatComponent,
-      MomentPipe
+      MomentPipe,
+      PageNotFoundComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,

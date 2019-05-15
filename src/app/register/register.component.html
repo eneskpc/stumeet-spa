@@ -1,0 +1,79 @@
+<div class="ks-logo">Stumeet</div>
+
+<div class="card panel panel-default ks-light ks-panel ks-login mb-3">
+  <div class="card-block">
+    <div class="form-container">
+      <h4 class="ks-header">Üye Ol</h4>
+      <div class="form-group">
+        <div class="input-icon icon-left icon-lg icon-color-primary">
+          <input type="text" [(ngModel)]="model.name" class="form-control" placeholder="Adı*">
+          <span class="icon-addon">
+            <span class="la la-at"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon icon-left icon-lg icon-color-primary">
+          <input type="text" [(ngModel)]="model.surname" class="form-control" placeholder="Soyadı*">
+          <span class="icon-addon">
+            <span class="la la-key"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon icon-left icon-lg icon-color-primary">
+          <input type="text" [(ngModel)]="model.birthDate" class="form-control" placeholder="Doğum Tarihi*">
+          <span class="icon-addon">
+            <span class="la la-key"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon icon-left icon-lg icon-color-primary">
+          <input type="text" [(ngModel)]="model.email" class="form-control" placeholder="Üniversite E-Posta Adresi*">
+          <span class="icon-addon">
+            <span class="la la-key"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon icon-left icon-lg icon-color-primary">
+          <input type="text" [(ngModel)]="model.phoneNumber" class="form-control"
+            placeholder="Telefon Numarası (İsteğe Bağlı)">
+          <span class="icon-addon">
+            <span class="la la-key"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon icon-left icon-lg icon-color-primary">
+          <input type="text" [(ngModel)]="model.password" class="form-control" placeholder="Parola*">
+          <span class="icon-addon">
+            <span class="la la-key"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon icon-left icon-lg icon-color-primary">
+          <input type="text" [(ngModel)]="model.passwordRepeat" class="form-control" placeholder="Parola (Tekrar)*">
+          <span class="icon-addon">
+            <span class="la la-key"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <small><strong><i>(*) ile belirtilen alanları doldurmak zorunludur.</i></strong></small>
+      </div>
+      <div class="form-group text-center">
+        <button type="button" [ngClass]="{'disabled' : this.process}" class="btn btn-primary"
+          [innerHTML]="this.buttonText"></button>
+      </div>
+      <div class="ks-text-center">
+        Zaten bir hesabın mı var ? Hemen <a routerLink="/giris">Giriş Yap</a>
+      </div>
+      <div class="ks-text-center">
+        <a routerLink="/sifremi-unuttum">Şifreni mi unuttun?</a>
+      </div>
+    </div>
+  </div>
+</div>

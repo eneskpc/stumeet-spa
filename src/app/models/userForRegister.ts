@@ -4,5 +4,6 @@ export interface UserForRegister {
     birthDate: string;
     email: string;
     password: string;
+    passwordRepeat: string;
     phoneNumber: string;
 }

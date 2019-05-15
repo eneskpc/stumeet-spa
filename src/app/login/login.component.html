@@ -20,25 +20,16 @@
           </span>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group text-center">
         <button type="button" (click)="this.login();" [ngClass]="{'disabled' : this.process}"
-          class="btn btn-primary btn-block" [innerHTML]="buttonText"></button>
+          class="btn btn-primary" [innerHTML]="buttonText"></button>
       </div>
       <div class="ks-text-center">
-        Hesabın yok mu?. Hemen <a href="/uye-ol">Üye Ol</a>
+        Hesabın yok mu?. Hemen <a routerLink="/uye-ol">Üye Ol</a>
       </div>
       <div class="ks-text-center">
         <a href="/sifremi-unuttum">Şifreni mi unuttun?</a>
       </div>
-
-      <!-- <div class="ks-social">
-        <div>or Log In with social</div>
-        <div>
-          <a href="#" class="facebook la la-facebook"></a>
-          <a href="#" class="twitter la la-twitter"></a>
-          <a href="#" class="google la la-google"></a>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

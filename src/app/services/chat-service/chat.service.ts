@@ -31,8 +31,10 @@ export class ChatService {
     }
     ChatService.connection.start().then(() => {
       ChatService.connection.on("messageReceived", (model: MessageForReceived) => {
-        document.querySelector('.ks-messages.ks-messenger__messages .ks-body.ks-scrollable').scrollTo(0, document.querySelector('.ks-messages.ks-messenger__messages .ks-body.ks-scrollable').scrollHeight);
         this.currentMessageList.push(model);
+        setTimeout(() => {
+          document.querySelector('.ks-messages.ks-messenger__messages .ks-body.ks-scrollable').scrollTo(0, document.querySelector('.ks-messages.ks-messenger__messages .ks-body.ks-scrollable').scrollHeight);
+        }, 50);
       });
     });
   }

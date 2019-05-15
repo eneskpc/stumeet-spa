@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ChatComponent } from './chat/chat.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -18,9 +20,14 @@ const routes: Routes = [
     }, {
       path: 'giris',
       component: LoginComponent
+    }, {
+      path: 'uye-ol',
+      component: RegisterComponent
+    }, {
+      path: '**',
+      component: PageNotFoundComponent
     }]
-  },
-  {
+  }, {
     path: '',
     component: MainLayoutComponent,
     children: [{
@@ -32,7 +39,7 @@ const routes: Routes = [
     }, {
       path: 'sohbet/:id',
       component: ChatComponent
-    },{
+    }, {
       path: 'sohbet',
       component: ChatComponent
     }]

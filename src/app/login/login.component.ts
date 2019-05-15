@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth-service/auth.service';
 import { UserForLogin } from '../models/userForLogin';
-import { Router, Event } from '@angular/router';
+import { Router } from '@angular/router';
 import { DialogService } from '../services/dialog-service/dialog.service';
 
 @Component({
