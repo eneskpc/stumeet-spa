@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   public login($event: KeyboardEvent = null) {
     if (($event == null || $event.keyCode == 13) && !this.process) {
       this.process = true;
-      this.buttonText = '<i class="la la-refresh la-spin"></i> Lütfen Bekleyin...';
+      this.buttonText = '<i class="la la-refresh la-spin mr-2"></i> Lütfen Bekleyin...';
       this.auth.login(this.model).subscribe(data => {
         this.auth.saveToken(data["token"]);
         this.router.navigateByUrl('/haber-kaynagi');

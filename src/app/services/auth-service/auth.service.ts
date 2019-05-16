@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   public register(model: UserForRegister): Observable<any> {
-    return this.http.post(`${SystemParams.apiRoot}/auth/login`, model);
+    return this.http.post(`${SystemParams.apiRoot}/auth/register`, model);
   }
 
   public loggedIn(): boolean {

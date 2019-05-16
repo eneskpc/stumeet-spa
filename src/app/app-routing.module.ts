@@ -13,22 +13,6 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {
     path: '',
-    component: PublicLayoutComponent,
-    children: [{
-      path: '',
-      component: WelcomeComponent
-    }, {
-      path: 'giris',
-      component: LoginComponent
-    }, {
-      path: 'uye-ol',
-      component: RegisterComponent
-    }, {
-      path: '**',
-      component: PageNotFoundComponent
-    }]
-  }, {
-    path: '',
     component: MainLayoutComponent,
     children: [{
       path: 'haber-kaynagi',
@@ -42,6 +26,22 @@ const routes: Routes = [
     }, {
       path: 'sohbet',
       component: ChatComponent
+    }]
+  }, {
+    path: '',
+    component: PublicLayoutComponent,
+    children: [{
+      path: '',
+      component: WelcomeComponent
+    }, {
+      path: 'giris',
+      component: LoginComponent
+    }, {
+      path: 'uye-ol',
+      component: RegisterComponent
+    }, {
+      path: '**',
+      component: PageNotFoundComponent
     }]
   }
 ];
