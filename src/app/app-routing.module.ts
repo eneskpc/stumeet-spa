@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { ChatComponent } from './chat/chat.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
@@ -15,6 +14,9 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [{
+      path: '',
+      component: HomeComponent
+    },{
       path: 'haber-kaynagi',
       component: HomeComponent
     }, {
@@ -31,9 +33,6 @@ const routes: Routes = [
     path: '',
     component: PublicLayoutComponent,
     children: [{
-      path: '',
-      component: WelcomeComponent
-    }, {
       path: 'giris',
       component: LoginComponent
     }, {

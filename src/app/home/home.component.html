@@ -31,27 +31,17 @@
                     </div>
                 </div>
 
-                <div class="card panel panel-default ks-post">
+                <div class="card panel panel-default ks-post" *ngFor="let post of this.postList">
                     <div class="ks-header">
                         <a class="ks-user">
                             <img src="assets/img/avatars/avatar-4.jpg" class="ks-avatar" width="36" height="36">
-                            <span class="ks-name">Lisa Morris</span>
+                            <span class="ks-name">{{post.user.name}} {{post.user.surname}}</span>
                         </a>
-                        <span class="ks-date-created">September 29, 2016</span>
+                        <span class="ks-date-created">{{post.creationDate | date}}</span>
                     </div>
                     <div class="ks-body">
                         <div class="ks-text">
-                            Express Wi-Fi empowers entrepreneurs to build a business by providing their community
-                            with access to the internet. Facebook designed the technology, and local internet
-                            providers add the connectivity. Express Wi-Fi is part of our Internet.org initiative.
-                        </div>
-                        <div class="ks-photos">
-                            <a class="ks-photo">
-                                <img src="assets/img/profile/p-1.png">
-                            </a>
-                            <a class="ks-photo">
-                                <img src="assets/img/profile/p-2.png">
-                            </a>
+                            {{post.postContent}}
                         </div>
                     </div>
                     <div class="ks-footer">
@@ -73,6 +63,12 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
                 <div class="card panel panel-default ks-post ks-has-comments">
                     <div class="ks-header">
                         <a class="ks-user">

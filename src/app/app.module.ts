@@ -8,7 +8,6 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
 import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SystemParams } from './SystemParams';
@@ -29,7 +28,6 @@ export function tokenGetter() {
       PublicLayoutComponent,
       LoginComponent,
       EventsComponent,
-      WelcomeComponent,
       ChatComponent,
       MomentPipe,
       PageNotFoundComponent,
