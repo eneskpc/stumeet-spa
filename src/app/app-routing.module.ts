@@ -8,6 +8,7 @@ import { EventsComponent } from './events/events.component';
 import { ChatComponent } from './chat/chat.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 const routes: Routes = [
   {
@@ -16,12 +17,15 @@ const routes: Routes = [
     children: [{
       path: '',
       component: HomeComponent
-    },{
+    }, {
       path: 'haber-kaynagi',
       component: HomeComponent
     }, {
       path: 'etkinlikler',
       component: EventsComponent
+    }, {
+      path: 'etkinlik/:id',
+      component: EventDetailComponent
     }, {
       path: 'sohbet/:id',
       component: ChatComponent

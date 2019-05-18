@@ -175,8 +175,9 @@
                             <img src="assets/img/avatars/avatar-13.jpg" width="36" height="36">
                         </span>
                         <span class="ks-info">
-                            <span class="ks-name">Robert Dean</span>
-                            <span class="ks-description">Premium User</span>
+                            <span class="ks-name" *ngIf="this.auth.currentUser">
+                                {{this.auth.currentUser.name}} {{this.auth.currentUser.surname}}
+                            </span>
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">

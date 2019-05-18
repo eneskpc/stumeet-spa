@@ -1,0 +1,21 @@
+.ks-page-content {
+  .ks-page-content-body {
+    width: 100%;
+  }
+}
+agm-map {
+  height: 300px;
+}
+.calendar-leaf {
+  display: inline-block;
+  width: 42px;
+  line-height: 1;
+  text-align: center;
+  > div:first-of-type {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  > div:last-of-type {
+    font-size: 27px;
+  }
+}

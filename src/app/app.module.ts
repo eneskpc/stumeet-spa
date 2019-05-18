@@ -10,14 +10,16 @@ import { LoginComponent } from './login/login.component';
 import { EventsComponent } from './events/events.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 import { SystemParams } from './SystemParams';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ChatComponent } from './chat/chat.component';
 import { MomentPipe } from './pipes/moment.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
-export function tokenGetter() {
+export function toketGetter() {
    return localStorage.getItem(SystemParams.tokenKey);
 }
 @NgModule({
@@ -31,7 +33,8 @@ export function tokenGetter() {
       ChatComponent,
       MomentPipe,
       PageNotFoundComponent,
-      RegisterComponent
+      RegisterComponent,
+      EventDetailComponent
    ],
    imports: [
       BrowserModule,
@@ -40,10 +43,13 @@ export function tokenGetter() {
       HttpClientModule,
       JwtModule.forRoot({
          config: {
-            tokenGetter: tokenGetter,
+            tokenGetter: toketGetter,
             whitelistedDomains: [],
             blacklistedRoutes: []
          }
+      }),
+      AgmCoreModule.forRoot({
+         apiKey: 'AIzaSyDT2WyJgM461KE7CtA6DKquq_mU57q57Xk'
       })
    ],
    providers: [],

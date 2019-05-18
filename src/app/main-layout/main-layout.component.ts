@@ -368,6 +368,9 @@ export class MainLayoutComponent implements OnInit {
     if (!this.auth.loggedIn()) {
       this.router.navigateByUrl("/giris");
     } else {
+      this.auth.getUser().subscribe(response => {
+        this.auth.currentUser = response;
+      });
       this.chat.startConnection();
       this.chat.getGroups().subscribe(response => {
         this.chat.currentMessageGroupList = response["data"];

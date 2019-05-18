@@ -3,7 +3,9 @@ import { UserForRegister } from '../models/userForRegister';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service/auth.service';
 import { DialogService } from '../services/dialog-service/dialog.service';
-
+import * as moment from 'moment';
+import flatpickr from "flatpickr";
+import { Turkish } from "flatpickr/dist/l10n/tr";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -31,6 +33,14 @@ export class RegisterComponent implements OnInit {
       passwordRepeat: "",
       phoneNumber: ""
     };
+    moment.locale('tr');
+    flatpickr("#birth-date", {
+      "locale": Turkish,
+      "dateFormat": "Z",
+      "altInput": true,
+      "altFormat": "d M Y",
+      "maxDate": moment().subtract(16, 'year').format()
+    });
   }
 
   public register($event: KeyboardEvent = null) {

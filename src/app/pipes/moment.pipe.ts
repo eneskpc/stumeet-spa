@@ -6,9 +6,11 @@ import * as moment from 'moment';
 })
 export class MomentPipe implements PipeTransform {
 
-  transform(value: any): any {
+  transform(value: any, format: string): any {
     moment.locale('tr');
-    return moment(value).fromNow();
+    if (format == 'now' || !format)
+      return moment(value).fromNow();
+    return moment(value).format(format);
   }
 
 }

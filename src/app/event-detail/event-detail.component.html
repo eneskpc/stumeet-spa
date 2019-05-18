@@ -1,0 +1,104 @@
+<div class="ks-page-header" *ngIf="currentEvent">
+  <section class="ks-title">
+    <h3>{{currentEvent.eventName}}</h3>
+  </section>
+</div>
+<div class="ks-page-content" *ngIf="currentEvent">
+  <div class="ks-page-content-body">
+    <agm-map [zoom]="mapZoom" [latitude]="mapLat" [longitude]="mapLng">
+      <agm-marker [latitude]="mapLat" [longitude]="mapLng">
+        <agm-info-window>
+          <h1>{{currentEvent.eventName}}</h1>
+          {{currentEvent.openAddress}}
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="calendar-leaf">
+                    <div class="text-danger">{{currentEvent.eventDate | moment:'MMM' | uppercase}}</div>
+                    <div>{{currentEvent.eventDate | moment:'DD'}}</div>
+                  </div>
+                  <div>
+                    <h3 class="pl-4">{{currentEvent.eventName}}</h3>
+                    <div class="pl-4 text-muted" style="font-size:70%;"><strong>Organizator :</strong>
+                      {{currentEvent.user.name}}
+                      {{currentEvent.user.surname}}</div>
+                  </div>
+                </div>
+                <div class="btn-group ml-3">
+                  <button class="btn btn-primary" (click)="changeInvitationReply('A')"
+                    [ngClass]="{'active':this.replyCurrentUser=='A'}">Gideceğim</button>
+                  <button class="btn btn-primary" (click)="changeInvitationReply('M')"
+                    [ngClass]="{'active':this.replyCurrentUser=='M'}">Kararsızım</button>
+                  <button class="btn btn-primary" (click)="changeInvitationReply('R')"
+                    [ngClass]="{'active':this.replyCurrentUser=='R'}">Gitmeyeceğim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              Detaylar
+            </div>
+            <div class="card-body">
+              <p><strong>Başlangıç Zamanı :</strong>&nbsp;{{currentEvent.eventDate | moment:'LLL'}}</p>
+              {{currentEvent.eventDescription}}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <button type="button" class="btn btn-outline-primary btn-block">Arkadaşlarını Davet Et</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" style="font-size:12px;">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link" (click)="changeGuestFilter('All')"
+                    [ngClass]="{'active disabled':this.guestFilter=='All'}">Tümü</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="changeGuestFilter('Accepts')"
+                    [ngClass]="{'active disabled':this.guestFilter=='Accepts'}">
+                    Gidenler <span class="badge badge-primary-outline ks-sm">{{acceptCount}}</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="changeGuestFilter('Rejects')"
+                    [ngClass]="{'active disabled':this.guestFilter=='Rejects'}">
+                    Gitmeyenler <span class="badge badge-primary-outline ks-sm">{{rejectCount}}</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="changeGuestFilter('Maybes')"
+                    [ngClass]="{'active disabled':this.guestFilter=='Maybes'}">
+                    Düşünenler <span class="badge badge-primary-outline ks-sm">{{maybeCount}}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngIf="this.filteredParticipantList.length==0">Kimse yok</li>
+              <li class="list-group-item d-flex justify-content-between align-items-center"
+                *ngFor="let participant of this.filteredParticipantList">
+                <div>{{participant.user.name}} {{participant.user.surname}}</div>
+                <span class="badge"
+                  [ngClass]="{'badge-success':this.participant.invitationReply=='A','badge-default':this.participant.invitationReply=='M','badge-danger':this.participant.invitationReply=='R'}">
+                  {{this.participant.invitationReply=='M'?"Belki":(this.participant.invitationReply=='A'?"Katılacak":"Katılmayacak")}}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

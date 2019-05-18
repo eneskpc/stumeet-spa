@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserForLogin } from 'src/app/models/userForLogin';
 import { SystemParams } from 'src/app/SystemParams';
 import { UserForRegister } from 'src/app/models/userForRegister';
@@ -15,7 +15,7 @@ export class AuthService {
     this.jwt = new JwtHelperService();
   }
 
-  public userDetail: UserForRegister;
+  public currentUser: any = null;
   public jwt: JwtHelperService;
 
   public login(model: UserForLogin, handler: Function = null): Observable<any> {
@@ -24,6 +24,15 @@ export class AuthService {
 
   public register(model: UserForRegister): Observable<any> {
     return this.http.post(`${SystemParams.apiRoot}/auth/register`, model);
+  }
+
+  public getUser() {
+    let headers = new HttpHeaders();
+    headers = headers.append("Content-Type", "application/json");
+    headers = headers.append("Authorization", this.getToken());
+    return this.http.get(`${SystemParams.apiRoot}/users/mine`, {
+      headers: headers
+    });
   }
 
   public loggedIn(): boolean {
